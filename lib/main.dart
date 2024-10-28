@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:qrcode_app/generate_qr_code.dart';
+import 'package:qrcode_app/scan_qr_code.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,6 +33,36 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('QR Code Scanner and Generator'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => ScanQrCode()));
+                });
+              },
+              child: const Text('Scan QR Code'),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => GenerateQrCode()));
+                });
+              },
+              child: const Text('Generate QR Code'),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
